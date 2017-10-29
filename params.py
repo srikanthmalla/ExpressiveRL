@@ -19,10 +19,10 @@ render=False
 input_shape=(None,)+observation_shape
 output_shape = (None,)+ (no_of_actions,)
 batch_size=1
-actor_lr=1E-2
-critic_lr=1E-2
+actor_lr=1E-1
+critic_lr=1E-1
 tf_logdir='./graphs/aclr_'+str(actor_lr)+',cr_lr'+str(critic_lr)+'/'
-LOSS_V=100
+LOSS_V=1.0
 dir_="./tmp/"+env_name+"/"+use_model
 import os
 if not os.path.exists(dir_):

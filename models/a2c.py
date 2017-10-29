@@ -27,7 +27,7 @@ class a2c():
         #will try entropy loss afterwards
         self.entropy =  tf.reduce_sum(self.p * tf.log(self.p + 1e-10), axis=1, keep_dims=True)  # maximize entropy (regularization)
         #self.loss_total = tf.reduce_mean(self.loss_policy + self.loss_value + self.entropy)
-        self.actor_optimizer = tf.train.AdamOptimizer(learning_rate=actor_lr).minimize(self.loss_policy+self.entropy)
+        self.actor_optimizer = tf.train.AdamOptimizer(learning_rate=actor_lr).minimize(self.loss_policy)
         self.critic_optimizer = tf.train.AdamOptimizer(learning_rate=critic_lr).minimize(self.loss_value)
         
         #session and initialization

@@ -50,6 +50,7 @@ class a2c_agent():
             self.total_reward+=reward   
             self.r.append(reward)   
             t=t+1
+            observation=observation_new
             if done:
                 self.R_terminal=0
                 self.bellman_update() #can be used for batch
@@ -59,12 +60,11 @@ class a2c_agent():
                 self.train()
                 self.total_reward=0
                 break
-            else:
+            #else:
 #                if (t%10 == 0):
  #                   self.R_terminal=model.predict_value([observation_new])
   #                  self.bellman_update()
    #                 self.train()
-                observation=observation_new
 
     def run(self):
         start = time.time()
