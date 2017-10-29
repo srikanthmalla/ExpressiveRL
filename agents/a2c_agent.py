@@ -8,7 +8,7 @@ from threading import Thread
 from gym.envs.classic_control import rendering
 #to get same random for rerun
 np.random.seed(1234)
-if (use_model=='a2c') or (use_model=='human'):
+if (use_model=='a2c'):
     model = a2c()
 elif use_model=='a3c':
     model = a3c()
@@ -40,18 +40,10 @@ class a2c_agent():
                 #upscale and show the game
                 upscaled= rescale(rgb,4,4)
                 self.viewer.imshow(upscaled)
-                #visualization of lenet layers
-                out=model.visualize([observation])
-                plotter(out)
                 if (mode=='test'):
                     time.sleep(0.2)
-            if use_model =='human':
-                self.record()
-                action=self.action
-                #print("step:",t,end="\r")
-            else:
-                action_prob=model.predict_action_prob([observation])
-                action=self.predict_action(action_prob,t)
+            action_prob=model.predict_action_prob([observation])
+            action=self.predict_action(action_prob,t)
             self.observations.append(observation)
             self.actions.append(onehot(action,no_of_actions))
             observation_new, reward, done, info = self.env.step(action)
@@ -68,10 +60,10 @@ class a2c_agent():
                 self.total_reward=0
                 break
             else:
-                if (t%10 == 0):
-                    self.R_terminal=model.predict_value([observation_new])
-                    self.bellman_update()
-                    self.train()
+#                if (t%10 == 0):
+ #                   self.R_terminal=model.predict_value([observation_new])
+  #                  self.bellman_update()
+   #                 self.train()
                 observation=observation_new
 
     def run(self):

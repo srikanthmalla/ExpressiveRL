@@ -59,11 +59,11 @@ class a2c():
         return a
 
     def actor(self,inputs): #modified vgg net
-        actions, self.layers =net(inputs,10,no_of_actions,'actor/')
+        actions  =net(inputs,10,no_of_actions,'actor/')
         return actions
     
     def critic(self,inputs):
-        value,_ =net(inputs,10,1,'value/')
+        value =net(inputs,10,1,'value/')
         return value
         
     def train_actor(self, observations, actions, R):
