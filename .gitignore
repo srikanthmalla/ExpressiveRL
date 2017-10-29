@@ -1,0 +1,5 @@
+tmp/
+._*
+*.pyc
+__pycache__/
+graphs/
