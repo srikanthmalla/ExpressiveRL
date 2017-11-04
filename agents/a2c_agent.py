@@ -60,11 +60,11 @@ class a2c_agent():
                 self.train()
                 self.total_reward=0
                 break
-            #else:
-#                if (t%10 == 0):
- #                   self.R_terminal=model.predict_value([observation_new])
-  #                  self.bellman_update()
-   #                 self.train()
+            else:
+                if (t%10 == 0):
+                    self.R_terminal=model.predict_value([observation_new])
+                    self.bellman_update()
+                    self.train()
 
     def run(self):
         start = time.time()

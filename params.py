@@ -19,17 +19,17 @@ render=False
 input_shape=(None,)+observation_shape
 output_shape = (None,)+ (no_of_actions,)
 batch_size=1
-actor_lr=1E-1
-critic_lr=1E-1
+actor_lr=1E-2
+critic_lr=1E-2
 tf_logdir='./graphs/aclr_'+str(actor_lr)+',cr_lr'+str(critic_lr)+'/'
-LOSS_V=1.0
+LOSS_V=10.0
 dir_="./tmp/"+env_name+"/"+use_model
 import os
 if not os.path.exists(dir_):
     os.makedirs(dir_)
 ckpt_dir=dir_+"/model.ckpt"
 #RL_agent details
-max_no_episodes=2000
+max_no_episodes=3000
 ckpt_episode=100
 GAMMA = 0.99
 #epsilon greedy, not the learning rate
@@ -56,6 +56,12 @@ elif use_net=='lenet':
 elif use_net=='VGG':
     from networks.VGG import *
     net=VGG
+
+# model predictor
+lr=0.0001
+max_epochs=100000
+ckpt_episode=1000
+
 
 ##observations
 # Episodic batch with lr=E-2, Loss_v=100, Epochs=2K, A2C algo works on Cart-pole. 
