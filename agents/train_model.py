@@ -4,12 +4,11 @@ from params import *
 from models.model_predict import *
 import time
 np.random.seed(1234)
-
 model=modelPredictor()
 class LearnModel():
     def __init__(self):
         self.episode=1
-        self.mode="test"
+        self.mode=mode
         if self.mode=="test":
             model.load()
         self.env=gym.make(env_name)
@@ -55,6 +54,8 @@ class LearnModel():
         start = time.time()
         if self.mode=="test":
             max_epochs=1
+        else:
+            max_epochs=100000
         while self.episode<=max_epochs:
             self.run_episode()
             self.episode+=1

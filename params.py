@@ -1,5 +1,5 @@
 use_model='a2c'
-mode='train'
+mode='test'
 #openai gym environments
 #--------
 env_name="CartPole-v0"
@@ -58,7 +58,7 @@ elif use_net=='VGG':
     net=VGG
 
 # model predictor
-lr=0.0001
+lr=0.001
 max_epochs=100000
 ckpt_episode=1000
 
